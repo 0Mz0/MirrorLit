@@ -7,6 +7,10 @@ pipeline {
 
     environment {
         DOCKERHUB_REPO = "chsl123/mirrorlit"
+        PROJECT_ID = 'eastern-surface-478607-i2'
+        CLUSTER_NAME = 'k8s'
+        LOCATION = 'asia-northeast3-a'
+        CREDENTIALS_ID = '726d76ec-e505-48e0-b5b5-0226ecc2d0aa'
     }
 
     stages {
@@ -28,7 +32,7 @@ pipeline {
                 if npm test; then
                   echo "테스트 성공"
                 else
-                  echo "테스트 실패 (하지만 CI 계속 진행)"
+                  echo "테스트 실패"
                 fi
                 '''
             }
@@ -52,6 +56,16 @@ pipeline {
                         sh "docker push ${DOCKERHUB_REPO}:latest"
                     }
                 }
+            }
+        }
+
+        stage('Deploy to GKE') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh "sed -i 's/mirrorlit:latest/mirrorlit:${env.BUILD_ID}/g' deployment.yaml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentailsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
     }
