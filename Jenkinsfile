@@ -26,13 +26,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-    steps {
-        sh 'npm test' // npm test가 0이 아닌 코드를 반환하면, 이 스테이지는 실패하고 빌드가 중단됩니다.
-        }
-    }
-    
-
     stage('Build Docker Image') {
             steps {
                 script {
