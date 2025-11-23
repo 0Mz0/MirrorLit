@@ -16,6 +16,17 @@ spec:
                 - name: mirrorlit
                   image: chsl123/mirrorlit:latest
                   imagePullPolicy: Always
+                  env:
+                      - name: DB_HOST
+                        value: "34.64.145.17"
+                      - name: "DB_USER"
+                        value: "cs"
+                      - name: "DB_PW"
+                        value: "mirrorlit"
+                      - name: "DB_PORT"
+                        value: "3306"
+                      - name: "DB_NAME"
+                        value: "mirrorlit_db"
                   ports:
                       - containerPort: 3000
                         name: mirrorlit
