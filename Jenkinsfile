@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_REPO = "chsl123/mirrorlit"
+        DOCKERHUB_REPO = "ayj089/mirrorlit"
         PROJECT_ID = 'eastern-surface-478607-i2'
         CLUSTER_NAME = 'k8s'
         LOCATION = 'asia-northeast3-a'
@@ -37,7 +37,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub') {     
+                    docker.withRegistry('', '8e658fbd-d431-4660-b69e-00764ad9c016') {     
                         sh "docker push ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
                         sh "docker tag ${DOCKERHUB_REPO}:${BUILD_NUMBER} ${DOCKERHUB_REPO}:latest"
                         sh "docker push ${DOCKERHUB_REPO}:latest"
