@@ -8,9 +8,9 @@ pipeline {
     environment {
         DOCKERHUB_REPO = "ayj089/mirrorlit"
         PROJECT_ID = 'eastern-surface-478607-i2'
-        CLUSTER_NAME = 'k8s'
+        CLUSTER_NAME = 'kube'
         LOCATION = 'asia-northeast3-a'
-        CREDENTIALS_ID = '726d76ec-e505-48e0-b5b5-0226ecc2d0aa'
+        CREDENTIALS_ID = '8e658fbd-d431-4660-b69e-00764ad9c016'
     }
 
     stages {
