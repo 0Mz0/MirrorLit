@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         DOCKERHUB_REPO = "ayj089/mirrorlit"
-        PROJECT_ID = 'eastern-surface-478607-i2'
+        PROJECT_ID = 'opensourcepractice-472707'
         CLUSTER_NAME = 'kube'
         LOCATION = 'asia-northeast3-a'
         CREDENTIALS_ID = '8e658fbd-d431-4660-b69e-00764ad9c016'
