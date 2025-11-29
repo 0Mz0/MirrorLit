@@ -1,3 +1,5 @@
+
+
 require("dotenv").config();
 const express = require("express"),
   app = express(),
@@ -180,7 +182,7 @@ app.use('/rank', rankRouter);
 app.use(errorController.respondNoResourceFound);
 app.use(errorController.respondInternalError);
 
-
+const port=8080;
 
 app.listen(app.get("port"), () => {
   console.log("실행 중");

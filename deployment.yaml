@@ -17,11 +17,11 @@ spec:
                   image: chsl123/mirrorlit:latest
                   env:
                       - name: DB_HOST
-                        value: "34.64.145.17"
+                        value: "34.47.92.25"
                       - name: "DB_USER"
-                        value: "cs"
+                        value: "myuser"
                       - name: "DB_PW"
-                        value: "mirrorlit"
+                        value: "mypassword"
                       - name: "DB_PORT"
                         value: "3306"
                       - name: "DB_NAME"
