@@ -10,7 +10,7 @@ pipeline {
         PROJECT_ID = 'opensourcepractice-472707'
         CLUSTER_NAME = 'kube'
         LOCATION = 'asia-northeast3-a'
-        CREDENTIALS_ID = '8e658fbd-d431-4660-b69e-00764ad9c016'
+        CREDENTIALS_ID = '7d038ca9-f331-47f7-c962a-8b2b555dba77'
     }
 
     stages {
