@@ -8,7 +8,7 @@ pipeline {
     environment {
         DOCKERHUB_REPO = "ayj089/mirrorlit"
         PROJECT_ID = 'opensourcepractice-472707'
-        CLUSTER_NAME = 'kube'
+        CLUSTER_NAME = 'k8s'
         LOCATION = 'asia-northeast3-a'
         CREDENTIALS_ID = '7d038ca9-f331-4f7c-962a-8b2b555dba77'
     }
@@ -51,8 +51,9 @@ pipeline {
                 branch 'master'
             }
             steps {
-               sh "sed -i 's|ayj089/mirrorlit:[^ ]*|ayj089/mirrorlit:${env.BUILD_NUMBER}|g' deployment.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: CREDENTIALS_ID, verifyDeployments: true])
+               sh "sed -i 's/ayj089/mirrorlit:latest/ayj089/mirrorlit:${env.BUILD_NUMBER}/g' deployment.yaml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID])
+                sh 'kubectl rollout status deployment/mirrorlit-deploy --timeout=180s'
             }
         }
     }

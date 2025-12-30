@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: mirrorlit
-                  image: ayj089/mirrorlit:latest
+                  image: ayj089/mirrorlit:${BUILD_NUMBER}
                   imagePullPolicy: Always
                   env:
                       - name: DB_HOST
@@ -22,7 +22,7 @@ spec:
                       - name: "DB_USER"
                         value: "myuser"
                       - name: "DB_PW"
-                        value: "mypassword"
+                        value: "mypassword123"
                       - name: "DB_PORT"
                         value: "3306"
                       - name: "DB_NAME"
