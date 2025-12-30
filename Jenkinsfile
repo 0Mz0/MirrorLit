@@ -52,7 +52,7 @@ pipeline {
             }
             steps {
                sh "sed -i 's|ayj089/mirrorlit:[^ ]*|ayj089/mirrorlit:${env.BUILD_NUMBER}|g' deployment.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: 7d038ca9-f331-47f7-c962a-8b2b555dba77, verifyDeployments: true])
             }
         }
     }
