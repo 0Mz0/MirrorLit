@@ -50,22 +50,10 @@ pipeline {
             when {
                 branch 'master'
             }
-           steps {
-        // 1. 어떤 태그가 있든 현재 빌드 번호로 강제 교체
-        sh "sed -i 's|ayj089/mirrorlit:[^ ]*|ayj089/mirrorlit:${env.BUILD_ID}|g' deployment.yaml"
-        
-        // 2. 변경된 매니페스트로 배포
-        step([$class: 'KubernetesEngineBuilder', 
-              projectId: env.PROJECT_ID, 
-              clusterName: env.CLUSTER_NAME, 
-              location: env.LOCATION, 
-              manifestPattern: 'deployment.yaml', 
-              credentialsId: env.CREDENTIALS_ID, 
-              verifyDeployments: true])
-        
-        // 3. 배포된 팟(Pod)들이 새 이미지를 즉시 사용하도록 재시작 트리거
-        sh "kubectl rollout restart deployment/mirrorlit-deploy"
-    }
+            steps {
+               sh "sed -i 's|ayj089/mirrorlit:latest|ayj089/mirrorlit:${env.BUILD_ID}|g' deployment.yaml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+            }
         }
     }
 
